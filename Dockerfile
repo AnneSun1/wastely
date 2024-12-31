@@ -19,7 +19,7 @@ RUN pip install tensorflow==2.17
 RUN pip install --upgrade typing_extensions
 
 
-COPY ./app /code/app
+COPY ./model /code/app
 
 EXPOSE 8080
 
