@@ -1,62 +1,44 @@
 import { useState } from "react";
 import axios from 'axios';
 import DropFileInput from "../components/DropFileInput";
-import { NavLink } from "react-router";
-import Navbar from "../components/Navbar";
+import { NavLink, useNavigate } from "react-router";
 import "./styles/Wastely.css";
 const URL = "http://localhost:8080/predict"
 
 function Wastely() {
-
-    async function predict(){
-        const formData = new FormData()
-        formData.append('image', file)
-            const response = await axios.post(URL, formData, { headers: 
-                {
-                'Content-Type': 'multipart/form-data',
-                }});
-            console.log(response.data)
-            setPrediction(response.data)
-            
-        }
-
+    const [fileList, setFileList] = useState([]);
     const [file, setFile] = useState();
     const [prediction, setPrediction] = useState();
-    
-    function handleChange(e) {
-        console.log(e.target.files);
-        setFile(e.target.files[0]);
+
+    const onFileChange = (files) => {
+        setFileList(files);
     }
 
-    function predictImage() {
-        predict(file);
+
+    const uploadImage = async (file) => {
+        setFile(file)
+        const formData = new FormData()
+        formData.append('image', file)
+            const response = await axios.post(URL, formData, { 
+                headers: { 'Content-Type': 'multipart/form-data', }
+            });
+            console.log(response.data)
+            setPrediction(response.data)
     }
+
+    
+    
     return (
-        <div style={{
-            position: "absolute",
-            display: "flex",
-            alignItems: "center",
-            flexDirection: "row",
-            justifyContent: "space-evenly",
-            height: "100vh",
-            width: "100vw",
-            top: "0",
-        }}>
-            
+        <div className="wastely-container">
             <div className="file-upload-container">
                 Insert a picture below to see if it's a recycable or organic:
-                <DropFileInput onChange={handleChange}/>
-                <button onClick={predictImage}>Upload</button>
+                <DropFileInput onFileChange={(files) => onFileChange(files)} uploadImage={(file) => uploadImage(file)}/>
             </div>
             OR
-            <div style={{
-                display: "flex",
-                alignItems: "center",
-                flexDirection: "column",
-                padding: "2rem"
-            }}>
+            <div className="map-button-container">
+                Search for the Nearest Trashcan
                 <NavLink to="/map" className="map-button">
-                    Find the Nearest Trashcan
+                    Go
                 </NavLink>
             </div>
         </div>

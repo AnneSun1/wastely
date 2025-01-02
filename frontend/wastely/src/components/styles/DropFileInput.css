@@ -31,30 +31,31 @@
     opacity: 0.6;
 }
 
-.drop-file-preview__item {
-    position: relative;
+.drop-file-preview {
     display: flex;
-    margin-bottom: 10px;
-    padding: 15px;
+    flex-direction: column;
+}
+
+.drop-file-preview__item {
+    /* position: relative; */
+    display: flex;
+    flex-direction: center;
+    justify-content: center;
+    margin: 10px;
+    padding: 0.75rem;
 }
 
 .drop-file-preview__item__info {
     display: flex;
     flex-direction: column;
-    margin-left: 0.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
 }
 
 .drop-file-preview__item__del {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
     box-shadow: var(--box-shadow);
     cursor: pointer;
     opacity: 0;

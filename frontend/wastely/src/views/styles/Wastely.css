@@ -1,3 +1,14 @@
+.wastely-container {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-evenly;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+}
+
 .file-upload-container {
     display: flex;
     align-items: center;
@@ -19,8 +30,10 @@
 .map-button {
     border-style: solid;
     border-color: black;
-    border-radius: 15px;
-    padding: 1rem;
+    border-radius: 10px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.25rem;
     text-decoration: none;
     color: black;
     background-color: #93d0b9;
@@ -31,3 +44,9 @@
     box-shadow: 5px 5px 5px #e5ebe9;
 }
 
+.map-button-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 2rem;
+}
