@@ -1,0 +1,33 @@
+.file-upload-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 2rem;
+}
+
+.file-upload-container button {
+    border-style: solid;
+    border-color: black;
+    border-radius: 10px;
+    margin: 1rem;
+    padding: 0.5rem;
+    text-decoration: none;
+    color: black;
+    background-color: #93d0b9;
+}
+
+.map-button {
+    border-style: solid;
+    border-color: black;
+    border-radius: 15px;
+    padding: 1rem;
+    text-decoration: none;
+    color: black;
+    background-color: #93d0b9;
+}
+
+.map-button:hover,
+.file-upload-container button:hover {
+    box-shadow: 5px 5px 5px #e5ebe9;
+}
+

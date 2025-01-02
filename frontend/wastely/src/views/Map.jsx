@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import axios from 'axios';
-import './map.css';
+import './styles/Map.css';
 
 const INITIAL_CENTER = [
     -123.1207,
@@ -69,7 +69,6 @@ function Map(){
         new mapboxgl.Marker().setLngLat([-123, 49]).addTo(mapRef.current)
     }, [trashcanData])
 
-    console.log("hi")
     return (
         <>
             {/* <div className="sidebar">

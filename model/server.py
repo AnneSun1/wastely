@@ -1,4 +1,6 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
 import tensorflow as tf
 import numpy as np
 from tensorflow import keras
@@ -10,6 +12,20 @@ print("Model Loaded")
 class_names = np.array(['Organics', 'Recycables'])
 
 app = FastAPI()
+
+origins = [
+    "http://localhost:5173",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
 
 @app.get('/')
 def reed_root(): #root
