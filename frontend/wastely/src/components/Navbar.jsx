@@ -2,17 +2,15 @@ import { NavLink } from "react-router";
 import MenuIcon from '@mui/icons-material/Menu';
 import "./styles/Navbar.css";
 import logo from "../assets/logo-transparent-svg.svg";
-function Navbar() {
-    const handleClick = () => {
 
-    }
+function Navbar() {
     return (
         <div className="nav-container">
             <div style={{paddingRight:"1rem", justifyContent: "left", width: "100%"}}>
-                <img src={logo} style={{height: "80px", width: "80px"}}/>
+                <NavLink to="/" style={{borderStyle: "solid"}}><img src={logo} style={{height: "80px", width: "80px"}}/></NavLink>
             </div>
             <div>
-                <MenuIcon onClick={handleClick}/>
+                <MenuIcon/>
             </div>
             
             {/* <div style={{

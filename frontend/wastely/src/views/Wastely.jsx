@@ -8,7 +8,7 @@ const URL = "http://localhost:8080/predict"
 function Wastely() {
     const [fileList, setFileList] = useState([]);
     const [file, setFile] = useState();
-    const [prediction, setPrediction] = useState();
+    const navigate = useNavigate();
 
     const onFileChange = (files) => {
         setFileList(files);
@@ -22,8 +22,15 @@ function Wastely() {
             const response = await axios.post(URL, formData, { 
                 headers: { 'Content-Type': 'multipart/form-data', }
             });
+
             console.log(response.data)
-            setPrediction(response.data)
+
+            let prediction = null;
+
+            if (typeof response.data.predicted_class !== 'undefined') {
+                prediction = response.data.predicted_class
+            }
+            navigate('/prediction', { state: { prediction: prediction, file: file }})
     }
 
     

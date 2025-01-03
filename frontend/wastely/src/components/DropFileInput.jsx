@@ -56,7 +56,7 @@ const DropFileInput = props => {
                     ))}
                 </div> 
             ) : null}
-            <NavLink to="/prediction" onClick={() => { props.uploadImage(file) }}>Upload</NavLink>
+            <button onClick={() => { props.uploadImage(file) }}>Upload</button>
         </>
     );
 }
