@@ -15,7 +15,7 @@ const TrashcanAni = () => {
             renderer: 'svg',
             loop: false,
             autoplay: false, // Autoplay is handled by interactivity
-            path: '../../public/lottie/trashcan-animation.json', // Path to your Lottie JSON file
+            path: '/lottie/trashcan-animation.json', // Path to your Lottie JSON file
         });
 
         return () => {
