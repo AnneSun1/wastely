@@ -25,3 +25,16 @@
     text-decoration: none;
     color: black;
 }
+
+.menu-icon {
+    border-radius: 50%;
+    border-style: none;
+    background-color: transparent;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-icon:hover {
+    background-color: #e5ebe9;
+}
+

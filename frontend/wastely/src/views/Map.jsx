@@ -9,7 +9,7 @@ const INITIAL_CENTER = [
     49.2827
 ]
 const INITIAL_ZOOM = 11
-const URL = 'http://localhost:4000/near-me/query'
+const BASE_URL = 'http://localhost:4000'
 
 function Map(){
 
@@ -44,36 +44,41 @@ function Map(){
             setZoom(mapZoom)
         })
 
-        mapRef.current.addControl(
-            new mapboxgl.GeolocateControl({
-                positionOptions: {
-                enableHighAccuracy: true
-                },
-                trackUserLocation: true,
-                showUserHeading: true
-            })
-        );
-    
+        const geolocateUser = new mapboxgl.GeolocateControl({
+            positionOptions: { enableHighAccuracy: true },
+            trackUserLocation: true,
+            showUserHeading: true
+        })
 
+        mapRef.current.addControl(geolocateUser, 'bottom-right');
+        
+        geolocateUser.on('geolocate', async (e) => {
+            console.log(e.coords)
+            const fullUrl = BASE_URL.concat(`/near-me/query?x=${e.coords.longitude}&y=${e.coords.latitude}`)
+            const response = await axios.get(fullUrl);
+            console.log(response.data)
+            setTrashcanData(response.data)
+            
+        })
         return () => {
             mapRef.current.remove();
         };
     }, []);
 
     useEffect(() => {
-        // for (const i in trashcanData.features) {
-        //     const obj = trashcanData.features[i]
-        //     const coordinates = [obj.geometry.x, obj.geometry.y]
-        //     new mapboxgl.Marker().setLngLat(coordinates).addTo(mapRef.current); 
-        // }
-        new mapboxgl.Marker().setLngLat([-123, 49]).addTo(mapRef.current)
+        for (const i in trashcanData.features) {
+            const obj = trashcanData.features[i]
+            const coordinates = [obj.geometry.coordinates[0], obj.geometry.coordinates[1]]
+            console.log(coordinates)
+            new mapboxgl.Marker().setLngLat(coordinates).addTo(mapRef.current); 
+        }
     }, [trashcanData])
 
     return (
         <>
-            {/* <div className="sidebar">
+            <div className="sidebar">
                 Longitude: {center[0].toFixed(4)} | Latitude: {center[1].toFixed(4)} | Zoom: {zoom.toFixed(2)}
-            </div> */}
+            </div>
             <div id='map-container' ref={mapContainerRef} style={{ width:'100%', height: '100%' }}/>
         </> 
    )

@@ -1,8 +1,5 @@
 import React from "react";
-import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import '@lottiefiles/lottie-player';
-import { NavLink } from "react-router";
-import Wastely from "./Wastely";
 import TrashcanAni from "../components/TrashcanAni";
 import "./styles/Welcome.css"
 
@@ -10,7 +7,6 @@ const Welcome = () => {
     const playAnimation = () => {
 
     }
-
 
     return (
         <div className="welcome-container">

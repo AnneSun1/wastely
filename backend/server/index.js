@@ -37,17 +37,23 @@ app.get('/year-round', async (req, res) => {
 
 app.get(`/near-me/query`, async (req, res) => {
     const { x, y } = req.query; // query?x=${x}&y=${y}
+
+    if (isNaN(Number(x)) || isNaN(Number(y))) {
+        console.log("The provided query parameters for x and y are not numbers")
+    }
     console.log(x-0.01)
     console.log(y-0.01)
+    console.log(Number(x)+0.01)
+    console.log(Number(y)+0.01)
 
-    //esri takes in x,y mercator coordinates and returns it in geojson format
     const queryParams = new URLSearchParams({
         outFields: '*',
         where: '1=1',
         geometryType: 'esriGeometryEnvelope',
-        geometry: `{xmin: 491500, ymin: 5455100, xmax: 491600, ymax: 5455300}`,
+        geometry: `{xmin: ${x - 0.02}, ymin: ${y - 0.02}, xmax: ${Number(x) + 0.02}, ymax: ${Number(y) + 0.02}}`,
+        inSR: '4326',
         returnGeometry: 'true',
-        f: 'json'
+        f: 'geojson'
     })
     const fullUrl = `${BASE_URL}?${queryParams.toString()}`
     console.log(fullUrl)
