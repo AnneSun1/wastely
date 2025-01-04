@@ -62,6 +62,14 @@ app.get(`/near-me/query`, async (req, res) => {
     console.log('Data fetched')
     res.send(response.data);
 })
+
+app.get('/version', (req, res) => {
+    res.send('Version 1.0')
+})
+
+app.all('*', (req, res) => {
+    res.send('404 Not found')
+})
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
 })
