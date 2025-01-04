@@ -9,7 +9,7 @@ var cors = require('cors')
 const BASE_URL = 'https://maps.vancouver.ca/server/rest/services/Hosted/LitterContainer/FeatureServer/4/query'
 
 
-const allowCors = fn => async (req, res) => {
+app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Credentials', true)
     res.setHeader('Access-Control-Allow-Origin', '*')
     // another common pattern
@@ -23,13 +23,9 @@ const allowCors = fn => async (req, res) => {
       res.status(200).end()
       return
     }
-    return await fn(req, res)
-}
 
-const handler = (req, res) => {
-const d = new Date()
-res.end(d.toString())
-}
+    next()
+});
 
 app.use(cors())
 
@@ -98,4 +94,4 @@ app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
 })
 
-module.exports = allowCors(handler)
+module.exports = allowCors(app)
