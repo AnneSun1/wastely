@@ -10,6 +10,13 @@ const BASE_URL = 'https://maps.vancouver.ca/server/rest/services/Hosted/LitterCo
 
 app.use(cors())
 
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', 'https://wastely.vercel.app');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    next();
+  });
+
 app.get('/all', async (req, res) => {
     const queryParams = new URLSearchParams({
         outFields: '*',
