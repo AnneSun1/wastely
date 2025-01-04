@@ -9,7 +9,7 @@ const INITIAL_CENTER = [
     49.2827
 ]
 const INITIAL_ZOOM = 11
-const BASE_URL = 'http://localhost:4000'
+const BASE_URL = 'https://vancouver-litterbin-map-api.vercel.app/'
 
 function Map(){
 

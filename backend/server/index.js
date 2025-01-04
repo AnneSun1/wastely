@@ -70,6 +70,7 @@ app.get('/version', (req, res) => {
 app.all('*', (req, res) => {
     res.send('404 Not found')
 })
+
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
 })
