@@ -12,8 +12,6 @@ const BASE_URL = 'https://maps.vancouver.ca/server/rest/services/Hosted/LitterCo
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Credentials', true)
     res.setHeader('Access-Control-Allow-Origin', '*')
-    // another common pattern
-    // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
     res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
     res.setHeader(
       'Access-Control-Allow-Headers',
@@ -27,7 +25,7 @@ app.use((req, res, next) => {
     next()
 });
 
-app.use(cors({ origin: 'https://wastely.vercel.app' }))
+app.use(cors({ origin: '*', methods: 'GET, POST'}))
 
 app.get('/all', async (req, res) => {
     const queryParams = new URLSearchParams({
