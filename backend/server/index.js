@@ -27,7 +27,7 @@ app.use((req, res, next) => {
     next()
 });
 
-app.use(cors())
+app.use(cors({ origin: 'https://wastely.vercel.app' }))
 
 app.get('/all', async (req, res) => {
     const queryParams = new URLSearchParams({
