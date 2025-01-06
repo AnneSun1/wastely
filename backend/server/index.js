@@ -25,6 +25,7 @@ app.use((req, res, next) => {
     next()
 });
 
+
 app.use(cors({ origin: '*', methods: 'GET, POST'}))
 
 app.get('/all', async (req, res) => {
