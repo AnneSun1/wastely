@@ -1,3 +1,5 @@
+import express from 'express';
+import cors from 'cors';
 
 const express = require('express')
 const axios = require('axios');
@@ -89,10 +91,6 @@ app.get('/version', (req, res) => {
 
 app.all('*', (req, res) => {
     res.send('404 Not found')
-})
-
-app.listen(port, () => {
-    console.log(`Server listening on port ${port}`);
 })
 
 module.exports = app
