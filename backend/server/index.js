@@ -90,7 +90,5 @@ app.get('/version', (req, res) => {
 })
 
 app.all('*', (req, res) => {
-    res.send('404 Not found')
+    res.status(404).send('404 Not found')
 })
-
-module.exports = app
