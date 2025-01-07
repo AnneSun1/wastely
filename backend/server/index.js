@@ -24,20 +24,8 @@ const BASE_URL = 'https://maps.vancouver.ca/server/rest/services/Hosted/LitterCo
 // });
 
 
-app.use(cors({ origin: (origin, callback) => {
-        // Allow specific origins
-        const allowedOrigins = [
-          'https://wastely.vercel.app', // Production frontend
-        ];
-    
-        // Dynamically allow any Vercel preview deployments
-        if (origin && (origin.endsWith('.vercel.app') || allowedOrigins.includes(origin))) {
-          callback(null, true);
-        } else {
-          callback(new Error('Not allowed by CORS'));
-        }
-      },
-    credentials: true,
+app.use(cors({ origin: '*',
+    credentials: false,
     methods: 'GET,OPTIONS,PATCH,DELETE,POST,PUT',
     allowedHeaders: 'X-CSRF-Token, X-Requested-With, Accept, Content-Type, Authorization'}))
 
