@@ -4,29 +4,31 @@ const axios = require('axios');
 const app = express()
 const port = 4000
 
-var cors = require('cors')
+const cors = require('cors')
 
 const BASE_URL = 'https://maps.vancouver.ca/server/rest/services/Hosted/LitterContainer/FeatureServer/4/query'
 
 
-app.use((req, res, next) => {
-    // res.setHeader('Access-Control-Allow-Credentials', false)
-    res.setHeader('Access-Control-Allow-Origin', '*')
-    res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
-    res.setHeader(
-      'Access-Control-Allow-Headers',
-      'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
-    )
-    if (req.method === 'OPTIONS') {
-      res.status(200).end()
-      return
-    }
+// app.use((req, res, next) => {
+//     res.setHeader('Access-Control-Allow-Origin', 'https://wastely.vercel.app/')
+//     res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
+//     res.setHeader(
+//       'Access-Control-Allow-Headers',
+//       'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+//     )
+//     if (req.method === 'OPTIONS') {
+//       res.status(200).end()
+//       return
+//     }
 
-    next()
-});
+//     next()
+// });
 
 
-// app.use(cors({ origin: '*', methods: 'GET, POST'}))
+app.use(cors({ origin: 'https://wastely.vercel.app',
+                credentials: true,
+                methods: 'GET,OPTIONS,PATCH,DELETE,POST,PUT',
+                allowedHeaders: 'X-CSRF-Token, X-Requested-With, Accept, Content-Type, Authorization'}))
 
 app.get('/all', async (req, res) => {
     const queryParams = new URLSearchParams({
